@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Generatore Magico</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    img {
+      max-width: 150px;
+      margin-top: 30px;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin: 10px;
+      color: #333;
+    }
+
+    p.description {
+      max-width: 500px;
+      margin: 0 20px 20px;
+      font-size: 1em;
+      color: #555;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin: 10px 5px 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    p.output {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #444;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="logo.png" alt="Logo">
+  <h1>Generatore Magico</h1>
+  <p class="description">Crea password super sicure e scuse perfette per ogni occasione. Tutto in un click!</p>
+
+  <div class="box">
+    <h2>Generatore di Password</h2>
+    <button onclick="generaPassword()">Genera Password</button>
+    <button onclick="copiaTesto('passwordOutput')">Copia</button>
+    <p class="output" id="passwordOutput"></p>
+  </div>
+
+  <div class="box">
+    <h2>Generatore di Scuse</h2>
+    <button onclick="generaScusa()">Genera Scusa</button>
+    <button onclick="copiaTesto('scusaOutput')">Copia</button>
+    <p class="output" id="scusaOutput"></p>
+  </div>
+
+  <script>
+    const scuse = [
+      "Il mio cane ha mangiato la tastiera.",
+      "Sono rimasto chiuso in casa con la chiave all'esterno.",
+      "Il computer si è aggiornato per ore.",
+      "Ho aiutato un alieno a trovare casa.",
+      "Il mio Wi-Fi ha deciso di prendersi una vacanza.",
+      "La sveglia ha suonato nel fuso orario sbagliato.",
+      "La stampante ha scioperato.",
+      "La corrente è saltata mentre stavo salvando.",
+      "Mi sono dimenticato di ricordarmi.",
+      "La prof mi ha detto che oggi non serviva farlo."
+    ];
+
+    function generaPassword() {
+      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+      let password = "";
+      for (let i = 0; i < 12; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById("passwordOutput").textContent = password;
+    }
+
+    function generaScusa() {
+      const scusa = scuse[Math.floor(Math.random() * scuse.length)];
+      document.getElementById("scusaOutput").textContent = scusa;
+    }
+
+    function copiaTesto(id) {
+      const testo = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(testo);
+      alert("Copiato!");
+    }
+  </script>
+
+</body>
+</html>
